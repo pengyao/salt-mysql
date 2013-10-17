@@ -1,0 +1,3 @@
+base:
+  '*':
+    - mysql.server.manage
