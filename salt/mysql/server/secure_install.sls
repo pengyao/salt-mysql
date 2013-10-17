@@ -17,4 +17,6 @@ mysqld_secure:
     - name: /usr/bin/mysql_secure.sh {{mysql_root_pass}}
     - watch:
       - file: mysqld_secure
+    - require_in:
+      - module: saltutil.refresh_modules
 {% endif %}
