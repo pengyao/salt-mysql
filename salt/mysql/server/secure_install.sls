@@ -12,9 +12,11 @@ mysqld_secure:
     - group: root
     - mode: 700
     - require:
-      - service: mysql-server
+      - pkg: mysql-server
   cmd.wait:
     - name: /usr/bin/mysql_secure.sh {{mysql_root_pass}}
+    - require:
+      - service: mysql-server
     - watch:
       - file: mysqld_secure
     - require_in:

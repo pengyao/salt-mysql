@@ -23,8 +23,6 @@ mysqld-manager:
       - service: mysql-server
   module.wait:
     - name: saltutil.refresh_modules
-    - require:
-      - cmd: mysqld_secure
     - watch:
       - pkg: mysqld-manager
     - order: 1
