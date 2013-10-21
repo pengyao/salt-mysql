@@ -20,5 +20,5 @@ mysqld_secure:
     - watch:
       - file: mysqld_secure
     - require_in:
-      - module: saltutil.refresh_modules
+      - module: mysqld-manager  
 {% endif %}
