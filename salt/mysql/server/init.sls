@@ -13,6 +13,11 @@ mysql-server:
       - pkg: mysql-server
       - file: mysql-server
 
+python26-mysqldb:
+  pkg.installed:
+    - name: python26-mysqldb
+  require:
+    - pkg: mysql-server
 
 {% if salt['config.get']('mysql.pass') %}
 ## support mysql manage
