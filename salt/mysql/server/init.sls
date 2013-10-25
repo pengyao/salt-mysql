@@ -14,22 +14,13 @@ mysql-server:
       - file: mysql-server
 
 
-{% if salt['config.get']('mysql.pass') %}
-## support mysql manage
-{% if grains['osrelease'][0] == '6' %}
 mysqld-manager:
   pkg.installed:
-    - name: MySQL-python
-    - require:
-      - service: mysql-server
-  module.wait:
-    - name: saltutil.refresh_modules
-    - watch:
-      - pkg: mysqld-manager
-    - order: 1
-{% elif grains['osrelease'][0] == '5' %}
-  pkg.installed:
+    {% if grains['os_family'] == 'RedHat' and grains['osmajorrelease'][0] == '5' %}
     - name: python26-mysqldb
+    {% else %}
+    - name: MySQL-python
+    {% endif %}
     - require:
       - service: mysql-server
   module.wait:
@@ -37,4 +28,3 @@ mysqld-manager:
     - watch:
       - pkg: mysqld-manager
     - order: 1
-{% endif %}
