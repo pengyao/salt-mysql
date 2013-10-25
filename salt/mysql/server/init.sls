@@ -13,7 +13,8 @@ mysql-server:
       - pkg: mysql-server
       - file: mysql-server
 
-
+{% if salt['config.get']('mysql.pass') %}
+## support mysql manage
 mysqld-manager:
   pkg.installed:
     {% if grains['os_family'] == 'RedHat' and grains['osmajorrelease'][0] == '5' %}
@@ -28,3 +29,4 @@ mysqld-manager:
     - watch:
       - pkg: mysqld-manager
     - order: 1
+{% endif %}
