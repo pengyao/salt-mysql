@@ -9,7 +9,7 @@
 ## Reqire MySQL ROOT Password 
 MYSQL_ROOT_PASSWORD=""
 MYSQL_ROOT_NEW_PASSWORD=""
-if [ -z $MYSQL_ROOT_NEW_PASSWORD -o "x$1" == "x" ]
+if [ -z "$MYSQL_ROOT_NEW_PASSWORD" -a "x$1" == "x" ]
 then
     echo "Missing MySQL ROOT New Password"
     exit 2
